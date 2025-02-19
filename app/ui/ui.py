@@ -1,3 +1,4 @@
+import sys
 import pygame
 from pygame.locals import *
 
@@ -41,6 +42,7 @@ class UserInterface:
             if (event.type == pygame.QUIT) or \
                 (event.type == KEYUP and event.key == K_ESCAPE):
                 pygame.quit()
+                sys.exit()
                 self.running = False
                 return
     
