@@ -2,9 +2,12 @@ import pygame
 from pygame.locals import *
 from pygame.sprite import DirtySprite, LayeredDirty
 
+from ui import colours
+from ui.widgets.lcars_widgets import LcarsBlockLarge, LcarsBlockMedium, LcarsBlockSmall, LcarsText
+
 # init
 pygame.init()
-screenSurface = pygame.display.set_mode((600, 400))
+screenSurface = pygame.display.set_mode((480, 320))
 
 class PpuiImage(DirtySprite):
     """Image sprite"""
@@ -27,14 +30,19 @@ class PpuiImage(DirtySprite):
 
 
 # create sprites
-bg = PpuiImage("assets/lcars_screen_1.png")
+bg = PpuiImage("assets/lcars_screen_sm.png")
 button = PpuiImage("assets/button.png")
 button.applyColour((255, 204, 153))
 
 # add sprites to layer
 sprites = LayeredDirty()
 sprites.add(bg)
-sprites.add(button)
+# sprites.add(button)
+sprites.add(LcarsText(colours.BLACK, (15, 20), "LCARS 105"),layer=1)
+sprites.add(LcarsText(colours.ORANGE, (0, 100), "ENGINEERING CONTROL", 2),layer=1)
+sprites.add(LcarsText(colours.BLACK, (145, 20), "LIGHTS"),layer=1)
+sprites.add(LcarsText(colours.BLACK, (211, 20), "CAMERAS"),layer=1)
+sprites.add(LcarsText(colours.BLACK, (249, 20), "ENERGY"),layer=1)
 
 # event loop
 while pygame.display.get_init():
@@ -42,7 +50,8 @@ while pygame.display.get_init():
     pygame.display.update()
 
     for event in pygame.event.get():
-        if event.type == KEYUP:
+        if (event.type == pygame.QUIT) or \
+            event.type == KEYUP:
             pygame.quit()
             break
         

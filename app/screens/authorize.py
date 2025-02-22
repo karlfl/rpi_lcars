@@ -13,7 +13,7 @@ from ui.widgets.lcars_widgets import LcarsButton
 class ScreenAuthorize(LcarsScreen):
 
     def setup(self, all_sprites):
-        all_sprites.add(LcarsBackgroundImage("assets/lcars_screen_2_sm.png"),
+        all_sprites.add(LcarsBackgroundImage("assets/lcars_screen_2.png"),
                         layer=0)
 
         all_sprites.add(LcarsGifImage("assets/gadgets/stlogorotating.gif", (103, 369), 50), 
